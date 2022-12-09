@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEXP.WPF", "ITEXP.WPF\ITEXP.WPF.csproj", "{A38D100D-9BA6-4978-ADA5-41C83161FB83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEXP.REST-API", "ITEXP.REST-API\ITEXP.REST-API.csproj", "{05E9403E-08FF-4D1B-8852-527719A0A490}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A38D100D-9BA6-4978-ADA5-41C83161FB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38D100D-9BA6-4978-ADA5-41C83161FB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38D100D-9BA6-4978-ADA5-41C83161FB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38D100D-9BA6-4978-ADA5-41C83161FB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E9403E-08FF-4D1B-8852-527719A0A490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E9403E-08FF-4D1B-8852-527719A0A490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E9403E-08FF-4D1B-8852-527719A0A490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E9403E-08FF-4D1B-8852-527719A0A490}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EA09FD7-1178-40D6-BE8D-2EA949908BBB}
+	EndGlobalSection
+EndGlobal
