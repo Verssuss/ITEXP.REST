@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEXP.REST-API", "ITEXP.RES
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{A995FDD4-91DB-4411-903E-E00CB6AD1723}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{30236266-0A92-4925-83E4-B66A69BEAE18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A995FDD4-91DB-4411-903E-E00CB6AD1723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A995FDD4-91DB-4411-903E-E00CB6AD1723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A995FDD4-91DB-4411-903E-E00CB6AD1723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30236266-0A92-4925-83E4-B66A69BEAE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30236266-0A92-4925-83E4-B66A69BEAE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30236266-0A92-4925-83E4-B66A69BEAE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30236266-0A92-4925-83E4-B66A69BEAE18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
