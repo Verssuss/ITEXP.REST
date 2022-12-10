@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEXP.WPF", "ITEXP.WPF\ITEXP.WPF.csproj", "{A38D100D-9BA6-4978-ADA5-41C83161FB83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITEXP.WPF", "ITEXP.WPF\ITEXP.WPF.csproj", "{A38D100D-9BA6-4978-ADA5-41C83161FB83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEXP.REST-API", "ITEXP.REST-API\ITEXP.REST-API.csproj", "{05E9403E-08FF-4D1B-8852-527719A0A490}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITEXP.REST-API", "ITEXP.REST-API\ITEXP.REST-API.csproj", "{05E9403E-08FF-4D1B-8852-527719A0A490}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{A995FDD4-91DB-4411-903E-E00CB6AD1723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A995FDD4-91DB-4411-903E-E00CB6AD1723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{30236266-0A92-4925-83E4-B66A69BEAE18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{30236266-0A92-4925-83E4-B66A69BEAE18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5317C7A0-949F-4DAD-B2B0-E4BA67AB58FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5317C7A0-949F-4DAD-B2B0-E4BA67AB58FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8056B8C4-D32A-40F8-B6C8-751AA069BF5E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

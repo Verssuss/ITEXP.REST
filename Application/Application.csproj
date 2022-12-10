@@ -10,7 +10,10 @@
     <Folder Include="CQRS\Commands\" />
     <Folder Include="CQRS\Queries\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
