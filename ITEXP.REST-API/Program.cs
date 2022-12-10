@@ -6,7 +6,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDatabase(builder.Configuration);
-string a = builder.Configuration.GetConnectionString("SQLiteConnection");
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
