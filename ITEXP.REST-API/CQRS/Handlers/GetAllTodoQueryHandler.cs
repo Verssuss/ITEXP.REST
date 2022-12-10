@@ -11,11 +11,13 @@ namespace ITEXP.REST_API.CQRS.Handlers
 {
     public class GetAllTodoQueryHandler : BaseServerHandler<GetAllTodoQuery, Result<List<TodoResponse>>>
     {
-        public GetAllTodoQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, ILogger<GetAllTodoQuery> logger, ICrypt crypt) : base(unitOfWork, mapper, logger)
+        public GetAllTodoQueryHandler(IUnitOfWork<Guid> unitOfWork, IMapper mapper, ILogger<GetAllTodoQuery> logger, ICrypt crypt) : base(mapper, logger)
         {
+            this.UnitOfWork = unitOfWork;
             _crypt = crypt;
         }
 
+        public IUnitOfWork<Guid> UnitOfWork { get; }
         private ICrypt _crypt;
 
         public override async Task<Result<List<TodoResponse>>> Handle(GetAllTodoQuery request, CancellationToken cancellationToken)

@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Domain.Configurations.Common
 {
-    public abstract class BaseAuditableEntityConfig<TDomain> : IEntityTypeConfiguration<TDomain> where TDomain : AuditableEntity<int>
+    public abstract class BaseAuditableEntityConfig<TDomain> : IEntityTypeConfiguration<TDomain> where TDomain : AuditableEntity<Guid>
     {
         public void Configure(EntityTypeBuilder<TDomain> builder)
         {
-            //builder.HasKey(x => x.Id);
-
             Config(builder);
         }
 

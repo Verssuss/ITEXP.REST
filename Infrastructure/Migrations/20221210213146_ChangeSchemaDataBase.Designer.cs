@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ITEXPContext))]
-    partial class ITEXPContextModelSnapshot : ModelSnapshot
+    [Migration("20221210213146_ChangeSchemaDataBase")]
+    partial class ChangeSchemaDataBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -41,7 +44,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 1,
                             Text = "2-3шт.",
-                            TodoId = new Guid("ba2b3a4b-754e-464b-b02d-faea77f0eeb0")
+                            TodoId = new Guid("3540cb77-2ee4-4b5f-82cd-7f791b0e452a")
                         });
                 });
 
@@ -76,8 +79,8 @@ namespace Infrastructure.Migrations
                             Header = "Create a ticket",
                             Category = (byte)3,
                             Color = "Red",
-                            CreatedOn = new DateTime(2022, 12, 10, 21, 33, 43, 413, DateTimeKind.Utc).AddTicks(8376),
-                            Id = new Guid("ba2b3a4b-754e-464b-b02d-faea77f0eeb0"),
+                            CreatedOn = new DateTime(2022, 12, 10, 21, 31, 46, 261, DateTimeKind.Utc).AddTicks(3937),
+                            Id = new Guid("3540cb77-2ee4-4b5f-82cd-7f791b0e452a"),
                             Status = (byte)0
                         },
                         new
@@ -85,8 +88,8 @@ namespace Infrastructure.Migrations
                             Header = "Request information",
                             Category = (byte)1,
                             Color = "Green",
-                            CreatedOn = new DateTime(2022, 12, 10, 21, 33, 43, 413, DateTimeKind.Utc).AddTicks(8379),
-                            Id = new Guid("5223633f-9b0f-4f54-8527-ff92dcfe2539"),
+                            CreatedOn = new DateTime(2022, 12, 10, 21, 31, 46, 261, DateTimeKind.Utc).AddTicks(3939),
+                            Id = new Guid("71e0eb6b-4861-4047-9512-91c400519763"),
                             Status = (byte)0
                         });
                 });

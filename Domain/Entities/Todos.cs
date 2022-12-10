@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Todo : AuditableEntity<int>
+    public class Todo : AuditableEntity<Guid>
     {
         public string Header { get; set; }
-        public Status Status { get; set; }
         public Category Category { get; set; }
         public Color Color { get; set; }
+        public Status Status { get; set; }
         public ICollection<Comment> Comments { get; set; }
     }
 }

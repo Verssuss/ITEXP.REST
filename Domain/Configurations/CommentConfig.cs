@@ -23,7 +23,6 @@ namespace Domain.Configurations
                    .HasPrincipalKey(x => x.Id)
                    .HasForeignKey(x=> x.TodoId);
 
-            builder.HasData(new Comment() { Id = 1, TodoId = 1, Text = "2-3шт." });
         }
     }
 }

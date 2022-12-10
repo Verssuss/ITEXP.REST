@@ -1,3 +1,4 @@
+using Application.CQRS.Commands;
 using Application.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,13 @@ namespace ITEXP.REST_API.Controllers
         public async Task<IActionResult> GetAllTodos()
         {
             var result = await _mediator.Send(new GetAllTodoQuery());
+            return Ok(result);
+        }
+
+        [HttpPost("postAllTodos")]
+        public async Task<IActionResult> postAddTodo(AddTodoCommand command)
+        {
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

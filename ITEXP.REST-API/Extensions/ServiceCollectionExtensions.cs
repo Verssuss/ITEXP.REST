@@ -22,6 +22,6 @@ public static class Extensions
     {
         return services
             .AddScoped(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>))
-            .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
     }
 }

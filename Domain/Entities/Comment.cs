@@ -14,7 +14,7 @@ namespace Domain.Entities
         public string Text { get; set; }
 
         [JsonIgnore]
-        public int TodoId { get; set; }
+        public Guid TodoId { get; set; }
 
         [JsonIgnore]
         public Todo Todo { get; set; }
