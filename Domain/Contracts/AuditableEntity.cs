@@ -1,8 +1,7 @@
 ﻿namespace Domain.Contracts
 {
-    public abstract class AuditableEntity<TId> : IAuditableEntity<TId>
+    public abstract class AuditableEntity<TId> : BaseEntity<TId>
     {
-        public TId Id { get; set; }
         public DateTime CreatedOn { get; set; }
     }
 }

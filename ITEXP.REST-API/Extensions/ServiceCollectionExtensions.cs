@@ -1,5 +1,7 @@
 
+using Application.Interfaces;
 using Infrastructure.Contexts;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 public static class Extensions
@@ -15,4 +17,11 @@ public static class Extensions
                            options.UseSqlite(sqliteConnection);
                        }
                    });
+
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
+    {
+        return services
+            .AddScoped(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>))
+            .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+    }
 }
