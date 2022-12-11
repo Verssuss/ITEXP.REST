@@ -34,7 +34,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
             todo.Header = request.Header;
             var result = await UnitOfWork.Commit(cancellationToken);
 
-            _logger.LogDebug($"Update todo by Id: Id - {result.Id}");
+            _logger.LogDebug($"Update todo by Id: Id - {todo.Id}");
             return await Result<int>.SuccessAsync($"Объект с идентификатором {todo.Id} успешно обновлен");
         }
     }

@@ -21,7 +21,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
             await UnitOfWork.Repository<Comment>().AddAsync(new Comment() { Text = request.Comment, TodoId = request.TodoId }, cancellationToken);
             var result = await UnitOfWork.Commit(cancellationToken);
 
-            Log.Debug($"Added comment for todo: TodoId - {request.TodoId}");
+            _logger.LogDebug($"Added comment for todo: TodoId - {request.TodoId}");
             return await Result<int>.SuccessAsync(result);
         }
     }

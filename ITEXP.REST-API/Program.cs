@@ -14,7 +14,6 @@ Log.Logger = new LoggerConfiguration()
                            .MinimumLevel.Debug()
                            .WriteTo.Console()
                            .WriteTo.SQLite("d:\\database.db", batchSize: 1)
-                           .Filter.ByIncludingOnly(x => x.Level == LogEventLevel.Debug)
                            .CreateLogger();
 
 

@@ -28,7 +28,6 @@ namespace ITEXP.REST_API.CQRS.Handlers
             await UnitOfWork.Commit(cancellationToken);
 
             _logger.LogDebug($"Added todo: Id - {result.Id}");
-            Log.Debug($"Added todo: Id - {result.Id}1");
             return await Result<Guid>.SuccessAsync(result.Id);
         }
     }
