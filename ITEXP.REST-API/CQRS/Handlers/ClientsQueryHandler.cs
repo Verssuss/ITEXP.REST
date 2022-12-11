@@ -27,6 +27,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
                                  .Where(x=> x.Contacts.Count > request.Count)
                                  .ToListAsync();
 
+            _logger.LogDebug($"Get clients count: - {clientsResponse.Count}");
             return await Result<List<Client>>.SuccessAsync(clientsResponse);
         }
     }

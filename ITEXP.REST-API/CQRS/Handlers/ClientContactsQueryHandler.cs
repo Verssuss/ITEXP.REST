@@ -32,6 +32,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
                                        .ProjectTo<ClientContactsResponse>(configuration)
                                        .ToListAsync();
 
+            _logger.LogDebug($"Get client contacts count: {clientContactsResponse.Count}");
             return await Result<List<ClientContactsResponse>>.SuccessAsync(clientContactsResponse);
         }
     }

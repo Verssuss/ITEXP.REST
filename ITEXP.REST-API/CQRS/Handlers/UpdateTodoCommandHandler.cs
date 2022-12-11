@@ -34,10 +34,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
             todo.Header = request.Header;
             var result = await UnitOfWork.Commit(cancellationToken);
 
-            //"Добавить уникальность по полю категория и заголовку."
-            //Сначала я подумал, что нужно использовать составной ключ, но когда дошел до этого метода решил переписать на уникальные индексы
-            //Можно отследить по миграциями
-
+            _logger.LogDebug($"Update todo by Id: Id - {result.Id}");
             return await Result<int>.SuccessAsync($"Объект с идентификатором {todo.Id} успешно обновлен");
         }
     }

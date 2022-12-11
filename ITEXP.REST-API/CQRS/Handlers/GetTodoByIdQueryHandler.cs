@@ -32,6 +32,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
 
             var todoResponse = AutoMapper.Map<Todo, TodoResponse>(todo);
 
+            _logger.LogDebug($"Get todo by id: Id - {todoResponse.Id}");
             return await Result<TodoResponse>.SuccessAsync(todoResponse);
         }
     }

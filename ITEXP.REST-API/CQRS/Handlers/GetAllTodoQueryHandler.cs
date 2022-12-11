@@ -36,13 +36,14 @@ namespace ITEXP.REST_API.CQRS.Handlers
             }
 
             var todos = await result.ToListAsync();
-            var result2 = AutoMapper.Map<List<Todo>, List<TodoResponse>>(todos);
-            foreach (var item in result2)
+            var todoResponseList = AutoMapper.Map<List<Todo>, List<TodoResponse>>(todos);
+            foreach (var item in todoResponseList)
             {
                 item.Hash = _crypt.Crypt(item.Header);
             }
 
-            return await Result<List<TodoResponse>>.SuccessAsync(result2);
+            _logger.LogDebug($"Get all todo: {todoResponseList.Count}");
+            return await Result<List<TodoResponse>>.SuccessAsync(todoResponseList);
         }
     }
 }

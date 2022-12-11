@@ -4,9 +4,19 @@ using FluentValidation;
 using ITEXP.REST_API;
 using ITEXP.REST_API.CQRS.Validations;
 using MediatR;
+using Serilog;
+using Serilog.Events;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+                           .MinimumLevel.Debug()
+                           .WriteTo.Console()
+                           .WriteTo.SQLite("d:\\database.db", batchSize: 1)
+                           .Filter.ByIncludingOnly(x => x.Level == LogEventLevel.Debug)
+                           .CreateLogger();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -22,8 +32,10 @@ builder.Services.AddControllersWithViews()
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 
+
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
