@@ -32,6 +32,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
            .Where(x => x.Id == request.Id)
            .ProjectTo<TodoCommentsResponse>(configuration).FirstOrDefaultAsync();
 
+            _logger.LogDebug($"Get comments by TodoId: Count - {todoResponse.Comments.Count}");
             return await Result<TodoCommentsResponse>.SuccessAsync(todoResponse);
         }
     }
