@@ -25,10 +25,17 @@ namespace ITEXP.REST_API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("postAllTodos")]
+        [HttpPost("postAddTodo")]
         public async Task<IActionResult> postAddTodo(AddTodoCommand command)
         {
             var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpGet("getTodoById/{id:guid}")]
+        public async Task<IActionResult> GetArtist(Guid id)
+        {
+            var result = await _mediator.Send(new GetTodoByIdQuery(id));
             return Ok(result);
         }
     }
