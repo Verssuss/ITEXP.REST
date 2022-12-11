@@ -52,5 +52,13 @@ namespace ITEXP.REST_API.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
+        [HttpGet("getCommentsByTodoID/{id:guid}")]
+        public async Task<IActionResult> GetCommentsByTodoID(Guid id)
+        {
+            var result = await _mediator.Send(new GetCommentsByTodoIDQuery(id));
+            return Ok(result);
+        }
+
     }
 }

@@ -31,22 +31,12 @@ namespace ITEXP.REST_API.CQRS.Handlers
                 return await Result<int>.FailAsync("Данный объект не найден");
             }
 
-            //var newTodo = todo with { Header = request.Header };
-            //foreach (var item in newTodo.Comments)
-            //{
-            //    item.Todo = newTodo;
-            //}
-
-            //await UnitOfWork.Repository<Todo>().DeleteAsync(todo, cancellationToken);
-            //await UnitOfWork.Repository<Todo>().AddAsync(newTodo, cancellationToken);
-
             todo.Header = request.Header;
             var result = await UnitOfWork.Commit(cancellationToken);
 
             //"Добавить уникальность по полю категория и заголовку."
-            //- возможно я неправильно понял задачу и нужно было использовать не составной ключ, а уникальность через индексы
-            //прошу меня извинить, если сделал не так =)
-            //В реальных проектах все подобные моменты обговариваются
+            //Сначала я подумал, что нужно использовать составной ключ, но когда дошел до этого метода решил переписать на уникальные индексы
+            //Можно отследить по миграциями
 
             return await Result<int>.SuccessAsync($"Объект с идентификатором {todo.Id} успешно обновлен");
         }

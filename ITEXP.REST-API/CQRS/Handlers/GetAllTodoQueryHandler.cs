@@ -24,7 +24,6 @@ namespace ITEXP.REST_API.CQRS.Handlers
         {
             var result = await UnitOfWork.Repository<Todo>().Entities.Include(x=> x.Comments).ToListAsync(cancellationToken);
             var result2 = AutoMapper.Map<List<Todo>, List<TodoResponse>>(result);
-
             foreach (var item in result2)
             {
                 item.Hash = _crypt.Crypt(item.Header);
