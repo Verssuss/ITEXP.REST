@@ -58,6 +58,23 @@ namespace Infrastructure.Contexts
             });
 
             modelBuilder.Entity<Comment>().HasData(new Comment() { Id = 1, TodoId = guid, Text = "2-3шт." });
+
+            Client client = new Client() { Id = 1, ClientName = "Mikle" };
+            Client client2 = new Client() { Id = 2, ClientName = "John" };
+     
+            List<ClientContact> contacts = new List<ClientContact>()
+            {
+                new() { ClientId = client.Id, Id = 1, ContactType = "SIM", ContactValue = "12345" },
+                new() { ClientId = client.Id, Id = 2, ContactType = "SIM", ContactValue = "54321" },
+                new() { ClientId = client.Id, Id = 3, ContactType = "SIM2", ContactValue = "33333" },
+
+                new() { ClientId = client2.Id, Id = 4, ContactType = "SIM", ContactValue = "756567" },
+                new() { ClientId = client2.Id, Id = 5, ContactType = "SIM2", ContactValue = "872364" },
+            };
+
+            modelBuilder.Entity<Client>().HasData(client, client2);
+            modelBuilder.Entity<ClientContact>().HasData(contacts);
+
             base.OnModelCreating(modelBuilder);
         }
     }
