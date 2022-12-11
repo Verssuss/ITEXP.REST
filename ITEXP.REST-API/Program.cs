@@ -4,9 +4,16 @@ using FluentValidation;
 using ITEXP.REST_API;
 using ITEXP.REST_API.CQRS.Validations;
 using MediatR;
+using Serilog;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+                           .MinimumLevel.Debug()
+                           .WriteTo.Console()
+                           .WriteTo.SQLite("d:\\database.db", batchSize: 1)
+                           .CreateLogger();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +31,7 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 

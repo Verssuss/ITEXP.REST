@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shared
+﻿namespace Shared
 {
     public interface IResult
     {
         List<string> Messages { get; set; }
-        List<string> Warnings { get; set; }
         bool Succeeded { get; set; }
+        List<string> Warnings { get; set; }
     }
 
     public interface IResult<out T> : IResult

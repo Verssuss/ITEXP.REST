@@ -18,6 +18,20 @@ namespace ITEXP.REST_API.Controllers
             this._mediator = mediator;
         }
 
+        [HttpPost("addCommentTodo")]
+        public async Task<IActionResult> AddCommentTodo(AddCommentTodoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost("deleteTodoById")]
+        public async Task<IActionResult> DeleteTodoById(DeleteTodoByIdCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
         [HttpGet("getAllTodos")]
         public async Task<IActionResult> GetAllTodos([FromQuery] GetAllTodoQuery query)
         {
@@ -25,10 +39,10 @@ namespace ITEXP.REST_API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("postAddTodo")]
-        public async Task<IActionResult> PostAddTodo(AddTodoCommand command)
+        [HttpGet("getCommentsByTodoID/{id:guid}")]
+        public async Task<IActionResult> GetCommentsByTodoID(Guid id)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(new GetCommentsByTodoIdQuery(id));
             return Ok(result);
         }
 
@@ -39,8 +53,8 @@ namespace ITEXP.REST_API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("deleteTodoById")]
-        public async Task<IActionResult> DeleteTodoById(DeleteTodoByIdCommand command)
+        [HttpPost("postAddTodo")]
+        public async Task<IActionResult> PostAddTodo(AddTodoCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -52,20 +66,5 @@ namespace ITEXP.REST_API.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
-
-        [HttpGet("getCommentsByTodoID/{id:guid}")]
-        public async Task<IActionResult> GetCommentsByTodoID(Guid id)
-        {
-            var result = await _mediator.Send(new GetCommentsByTodoIdQuery(id));
-            return Ok(result);
-        }
-
-        [HttpPost("addCommentTodo")]
-        public async Task<IActionResult> AddCommentTodo(AddCommentTodoCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return Ok(result);
-        }
-
     }
 }

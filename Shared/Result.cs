@@ -7,9 +7,8 @@
         }
 
         public List<string> Messages { get; set; } = new List<string>();
-        public List<string> Warnings { get; set; } = new List<string>();
-
         public bool Succeeded { get; set; }
+        public List<string> Warnings { get; set; } = new List<string>();
 
         public static IResult Fail()
         {
@@ -145,26 +144,6 @@
             return new Result<T> { Succeeded = true, Data = data, Messages = messages };
         }
 
-        public new static Task<Result<T>> SuccessAsync()
-        {
-            return Task.FromResult(Success());
-        }
-
-        public new static Task<Result<T>> SuccessAsync(string message)
-        {
-            return Task.FromResult(Success(message));
-        }
-
-        public async static Task<Result<T>> SuccessAsync(T data)
-        {
-            return await Task.FromResult(Success(data));
-        }
-
-        public static Task<Result<T>> SuccessAsync(T data, string message)
-        {
-            return Task.FromResult(Success(data, message));
-        }
-
         public new static Result<T> Success(string message, List<string> warnings)
         {
             return new Result<T> { Succeeded = true, Messages = new List<string> { message }, Warnings = warnings };
@@ -175,16 +154,6 @@
             return new Result<T> { Data = data, Succeeded = true, Messages = new List<string> { message }, Warnings = warnings };
         }
 
-        public new static Task<Result<T>> SuccessAsync(string message, List<string> warnings)
-        {
-            return Task.FromResult(Success(message, warnings));
-        }
-
-        public static Task<Result<T>> SuccessAsync(T data, string message, List<string> warnings)
-        {
-            return Task.FromResult(Success(data, message, warnings));
-        }
-
         public new static Result<T> Success(List<string> messages, List<string> warnings)
         {
             return new Result<T> { Succeeded = true, Messages = messages, Warnings = warnings };
@@ -193,6 +162,36 @@
         public static Result<T> Success(T data, List<string> messages, List<string> warnings)
         {
             return new Result<T> { Data = data, Succeeded = true, Messages = messages, Warnings = warnings };
+        }
+
+        public new static Task<Result<T>> SuccessAsync()
+        {
+            return Task.FromResult(Success());
+        }
+
+        public new static Task<Result<T>> SuccessAsync(string message)
+        {
+            return Task.FromResult(Success(message));
+        }
+
+        public static async Task<Result<T>> SuccessAsync(T data)
+        {
+            return await Task.FromResult(Success(data));
+        }
+
+        public static Task<Result<T>> SuccessAsync(T data, string message)
+        {
+            return Task.FromResult(Success(data, message));
+        }
+
+        public new static Task<Result<T>> SuccessAsync(string message, List<string> warnings)
+        {
+            return Task.FromResult(Success(message, warnings));
+        }
+
+        public static Task<Result<T>> SuccessAsync(T data, string message, List<string> warnings)
+        {
+            return Task.FromResult(Success(data, message, warnings));
         }
 
         public new static Task<Result<T>> SuccessAsync(List<string> messages, List<string> warnings)

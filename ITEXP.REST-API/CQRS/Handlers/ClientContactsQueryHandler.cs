@@ -1,5 +1,4 @@
-﻿using Application.CQRS.Commands;
-using Application.CQRS.Queries;
+﻿using Application.CQRS.Queries;
 using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;
@@ -32,6 +31,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
                                        .ProjectTo<ClientContactsResponse>(configuration)
                                        .ToListAsync();
 
+            _logger.LogDebug($"Get client contacts count: {clientContactsResponse.Count}");
             return await Result<List<ClientContactsResponse>>.SuccessAsync(clientContactsResponse);
         }
     }

@@ -3,7 +3,6 @@ using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 
@@ -22,8 +21,8 @@ namespace ITEXP.REST_API.CQRS.Handlers
         {
             var todo = await UnitOfWork
                 .Repository<Todo>().Entities
-                .Include(x=> x.Comments)
-                .FirstOrDefaultAsync(x=> x.Id == request.Id, cancellationToken);
+                .Include(x => x.Comments)
+                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             if (todo == null)
             {
@@ -32,6 +31,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
 
             var todoResponse = AutoMapper.Map<Todo, TodoResponse>(todo);
 
+            _logger.LogDebug($"Get todo by id: Id - {todoResponse.Id}");
             return await Result<TodoResponse>.SuccessAsync(todoResponse);
         }
     }

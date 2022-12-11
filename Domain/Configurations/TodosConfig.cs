@@ -1,12 +1,8 @@
 ﻿using Domain.Configurations.Common;
 using Domain.Entities;
 using Domain.Enums;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
-using System.Reflection.Emit;
 
 namespace Domain.Configurations
 {

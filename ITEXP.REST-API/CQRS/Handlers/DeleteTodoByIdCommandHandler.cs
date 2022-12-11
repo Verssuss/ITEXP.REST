@@ -1,5 +1,4 @@
 ﻿using Application.CQRS.Commands;
-using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -29,6 +28,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
             await UnitOfWork.Repository<Todo>().DeleteAsync(todo, cancellationToken);
             var result = await UnitOfWork.Commit(cancellationToken);
 
+            _logger.LogDebug($"Delete Todo: Id - {todo.Id}");
             return await Result<int>.SuccessAsync($"Удалено объектов: {result}");
         }
     }
