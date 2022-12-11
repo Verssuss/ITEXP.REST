@@ -1,5 +1,4 @@
 ﻿using Application.CQRS.Responses;
-using Domain.Entities;
 using MediatR;
 using Shared;
 using System;
@@ -10,8 +9,13 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Queries
 {
-    public class GetAllTodoQuery : IRequest<Result<List<TodoResponse>>>
+    public class GetTodoByIdQuery : IRequest<Result<TodoResponse>>
     {
+        public Guid Id { get; set; }
 
+        public GetTodoByIdQuery(Guid id)
+        {
+            Id = id;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Application.CQRS.Responses;
+﻿using Application.CQRS.Commands;
+using Application.CQRS.Responses;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -16,12 +17,16 @@ namespace Application.Extensions
     {
         public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
         {
-            //IMapperConfigurationExpression mapperConfigurationExpression = new MapperConfigurationExpression();
-            //mapperConfigurationExpression.CreateMap<TodoResponse, Todo>();
-
-            services.AddAutoMapper((c) => c.CreateMap<Todo, TodoResponse>(), Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(ConfigurationMapper, Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly(), Assembly.GetCallingAssembly());
             return services;
         }
+
+        private static void ConfigurationMapper(IMapperConfigurationExpression mapperConfigurationExpression)
+        {
+            mapperConfigurationExpression.CreateMap<Todo, TodoResponse>();
+            mapperConfigurationExpression.CreateMap<AddTodoCommand, Todo>();
+        }
+
     }
 }

@@ -10,6 +10,7 @@ namespace Application.CQRS.Responses
 {
     public class TodoResponse
     {
+        public Guid Id { get; set; }
         public string Header { get; set; }
         public Status Status { get; set; }
         public Category Category { get; set; }

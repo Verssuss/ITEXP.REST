@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Comment : BaseEntity<int>
+    public record class Comment : BaseEntity<int>
     {
         public string Text { get; set; }
 
         [JsonIgnore]
-        public int TodoId { get; set; }
+        public Guid TodoId { get; set; }
 
         [JsonIgnore]
         public Todo Todo { get; set; }

@@ -1,7 +1,6 @@
 using Application.Extensions;
 using Application.Interfaces;
 using ITEXP.REST_API;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

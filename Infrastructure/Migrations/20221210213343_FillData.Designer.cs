@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ITEXPContext))]
-    partial class ITEXPContextModelSnapshot : ModelSnapshot
+    [Migration("20221210213343_FillData")]
+    partial class FillData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -41,14 +44,13 @@ namespace Infrastructure.Migrations
                         {
                             Id = 1,
                             Text = "2-3шт.",
-                            TodoId = new Guid("fa8aaa37-b319-471d-ad54-43757cc41863")
+                            TodoId = new Guid("ba2b3a4b-754e-464b-b02d-faea77f0eeb0")
                         });
                 });
 
             modelBuilder.Entity("Domain.Entities.Todo", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Header")
                         .HasColumnType("TEXT");
 
                     b.Property<byte>("Category")
@@ -61,37 +63,33 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Header")
-                        .IsRequired()
+                    b.Property<Guid>("Id")
                         .HasColumnType("TEXT");
 
                     b.Property<byte>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Header", "Category")
-                        .IsUnique();
+                    b.HasKey("Header", "Category");
 
                     b.ToTable("Todo");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fa8aaa37-b319-471d-ad54-43757cc41863"),
+                            Header = "Create a ticket",
                             Category = (byte)3,
                             Color = "Red",
-                            CreatedOn = new DateTime(2022, 12, 11, 11, 19, 8, 50, DateTimeKind.Utc).AddTicks(6920),
-                            Header = "Create a ticket",
+                            CreatedOn = new DateTime(2022, 12, 10, 21, 33, 43, 413, DateTimeKind.Utc).AddTicks(8376),
+                            Id = new Guid("ba2b3a4b-754e-464b-b02d-faea77f0eeb0"),
                             Status = (byte)0
                         },
                         new
                         {
-                            Id = new Guid("f9d74be7-0cd1-4a66-8dbd-31ae952300a9"),
+                            Header = "Request information",
                             Category = (byte)1,
                             Color = "Green",
-                            CreatedOn = new DateTime(2022, 12, 11, 11, 19, 8, 50, DateTimeKind.Utc).AddTicks(6931),
-                            Header = "Request information",
+                            CreatedOn = new DateTime(2022, 12, 10, 21, 33, 43, 413, DateTimeKind.Utc).AddTicks(8379),
+                            Id = new Guid("5223633f-9b0f-4f54-8527-ff92dcfe2539"),
                             Status = (byte)0
                         });
                 });
@@ -101,6 +99,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Todo", "Todo")
                         .WithMany("Comments")
                         .HasForeignKey("TodoId")
+                        .HasPrincipalKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

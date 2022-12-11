@@ -15,8 +15,7 @@ namespace Infrastructure.Contexts
     {
         public ITEXPContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+     
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -37,9 +36,28 @@ namespace Infrastructure.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(IEntity)));
+            var guid = Guid.NewGuid();
 
-        
+            modelBuilder.Entity<Todo>().HasData(new Todo
+            {
+                Id = guid,
+                Header = "Create a ticket",
+                Category = Category.Analytics,
+                Status = Status.Running,
+                Color = Color.Red,
+                CreatedOn = DateTime.UtcNow,
+            },
+            new Todo
+            {
+                Id = Guid.NewGuid(),
+                Header = "Request information",
+                Category = Category.Bookkeeping,
+                Color = Color.Green,
+                Status = Status.Running,
+                CreatedOn = DateTime.UtcNow,
+            });
 
+            modelBuilder.Entity<Comment>().HasData(new Comment() { Id = 1, TodoId = guid, Text = "2-3шт." });
             base.OnModelCreating(modelBuilder);
         }
     }
