@@ -10,16 +10,16 @@ using Shared;
 
 namespace ITEXP.REST_API.CQRS.Handlers
 {
-    public class GetCommentsByTodoIDQueryHandler : BaseServerHandler<GetCommentsByTodoIDQuery, Result<TodoCommentsResponse>>
+    public class GetCommentsByTodoIdQueryHandler : BaseServerHandler<GetCommentsByTodoIdQuery, Result<TodoCommentsResponse>>
     {
-        public GetCommentsByTodoIDQueryHandler(IMapper mapper, ILogger<GetCommentsByTodoIDQuery> logger, IUnitOfWork<Guid> unitOfWork) : base(mapper, logger)
+        public GetCommentsByTodoIdQueryHandler(IMapper mapper, ILogger<GetCommentsByTodoIdQuery> logger, IUnitOfWork<Guid> unitOfWork) : base(mapper, logger)
         {
             UnitOfWork = unitOfWork;
         }
 
         public IUnitOfWork<Guid> UnitOfWork { get; }
 
-        public override async Task<Result<TodoCommentsResponse>> Handle(GetCommentsByTodoIDQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<TodoCommentsResponse>> Handle(GetCommentsByTodoIdQuery request, CancellationToken cancellationToken)
         {
             MapperConfiguration configuration = new(cfg => cfg
                                                     .CreateProjection<Todo, TodoCommentsResponse>()

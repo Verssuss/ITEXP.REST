@@ -1,6 +1,10 @@
 using Application.Extensions;
 using Application.Interfaces;
+using FluentValidation;
 using ITEXP.REST_API;
+using ITEXP.REST_API.CQRS.Validations;
+using MediatR;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +21,10 @@ builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
+
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
