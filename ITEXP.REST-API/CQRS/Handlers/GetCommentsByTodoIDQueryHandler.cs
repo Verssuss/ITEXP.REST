@@ -4,7 +4,6 @@ using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 
@@ -23,7 +22,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
         {
             MapperConfiguration configuration = new(cfg => cfg
                                                     .CreateProjection<Todo, TodoCommentsResponse>()
-                                                    .ForMember(x=> x.Comments, opt => opt.MapFrom(x=> x.Comments))
+                                                    .ForMember(x => x.Comments, opt => opt.MapFrom(x => x.Comments))
                                                     );
 
             var todoResponse = await UnitOfWork
