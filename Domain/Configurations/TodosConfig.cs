@@ -18,9 +18,7 @@ namespace Domain.Configurations
             .Property(p => p.Color)
                  .HasConversion(new EnumToStringConverter<Color>());
 
-         
-
-            builder.HasKey(x => new { x.Header, x.Category });
+            builder.HasIndex(x => new { x.Header, x.Category }).IsUnique();
         }
     }
 }

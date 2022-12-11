@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    public abstract class BaseEntity<TId> : IEntity<TId>
+    public abstract record class BaseEntity<TId> : IEntity<TId>
     {
         public TId Id { get; set; }
     }

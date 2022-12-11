@@ -20,9 +20,7 @@ namespace Domain.Configurations
         {
             builder.HasOne(x => x.Todo)
                    .WithMany(x => x.Comments)
-                   .HasPrincipalKey(x => x.Id)
-                   .HasForeignKey(x=> x.TodoId);
-
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

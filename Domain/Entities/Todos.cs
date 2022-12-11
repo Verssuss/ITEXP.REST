@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Todo : AuditableEntity<Guid>
+    public record class Todo : AuditableEntity<Guid>
     {
         public string Header { get; set; }
         public Category Category { get; set; }

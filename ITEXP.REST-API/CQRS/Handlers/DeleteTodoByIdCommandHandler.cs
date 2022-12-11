@@ -29,7 +29,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
             await UnitOfWork.Repository<Todo>().DeleteAsync(todo, cancellationToken);
             var result = await UnitOfWork.Commit(cancellationToken);
 
-            return await Result<int>.SuccessAsync(result);
+            return await Result<int>.SuccessAsync($"Удалено объектов: {result}");
         }
     }
 }

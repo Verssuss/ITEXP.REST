@@ -8,6 +8,8 @@ namespace Domain.Configurations.Common
     {
         public void Configure(EntityTypeBuilder<TDomain> builder)
         {
+            builder.HasKey(e => e.Id);
+
             Config(builder);
         }
 

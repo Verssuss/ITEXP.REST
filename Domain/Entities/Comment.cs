@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Comment : BaseEntity<int>
+    public record class Comment : BaseEntity<int>
     {
         public string Text { get; set; }
 
