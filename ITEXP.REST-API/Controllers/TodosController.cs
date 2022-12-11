@@ -60,5 +60,12 @@ namespace ITEXP.REST_API.Controllers
             return Ok(result);
         }
 
+        [HttpPost("addCommentTodo")]
+        public async Task<IActionResult> AddCommentTodo(AddCommentTodoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
     }
 }
