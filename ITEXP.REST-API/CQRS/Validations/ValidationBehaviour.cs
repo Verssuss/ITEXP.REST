@@ -1,7 +1,7 @@
-﻿using FluentValidation.Results;
-using FluentValidation;
-using MediatR;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using ITEXP.REST_API.Extensions;
+using MediatR;
 
 namespace ITEXP.REST_API.CQRS.Validations
 {
@@ -25,7 +25,6 @@ namespace ITEXP.REST_API.CQRS.Validations
                 string typeName = request.GetGenericTypeName();
 
                 _logger.LogInformation("----- Validating command {CommandType}", typeName);
-
 
                 ValidationContext<TRequest> context = new ValidationContext<TRequest>(request);
                 ValidationResult[] validationResults =

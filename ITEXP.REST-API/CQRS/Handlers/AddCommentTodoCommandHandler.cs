@@ -2,7 +2,6 @@
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using Serilog;
 using Shared;
 
 namespace ITEXP.REST_API.CQRS.Handlers

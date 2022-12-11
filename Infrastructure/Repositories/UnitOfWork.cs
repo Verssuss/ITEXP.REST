@@ -8,10 +8,10 @@ namespace Infrastructure.Repositories
 {
     public class UnitOfWork<TId> : IUnitOfWork<TId>
     {
+        private readonly IAppCache _cache;
         private readonly ITEXPContext _dbContext;
         private bool _disposed;
         private Hashtable _repositories;
-        private readonly IAppCache _cache;
 
         public UnitOfWork(
             ITEXPContext dbContext,
@@ -20,6 +20,27 @@ namespace Infrastructure.Repositories
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _cache = cache;
+        }
+
+        public async Task<int> Commit(CancellationToken cancellationToken)
+        {
+            return await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, params string[] cacheKeys)
+        {
+            var result = await _dbContext.SaveChangesAsync(cancellationToken);
+            foreach (var cacheKey in cacheKeys)
+            {
+                _cache.Remove(cacheKey);
+            }
+            return result;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public IRepositoryAsync<TEntity, TId> Repository<TEntity>() where TEntity : BaseEntity<TId>
@@ -40,31 +61,10 @@ namespace Infrastructure.Repositories
             return (IRepositoryAsync<TEntity, TId>)_repositories[type]!;
         }
 
-        public async Task<int> Commit(CancellationToken cancellationToken)
-        {
-            return await _dbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, params string[] cacheKeys)
-        {
-            var result = await _dbContext.SaveChangesAsync(cancellationToken);
-            foreach (var cacheKey in cacheKeys)
-            {
-                _cache.Remove(cacheKey);
-            }
-            return result;
-        }
-
         public Task Rollback()
         {
             _dbContext.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
             return Task.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)

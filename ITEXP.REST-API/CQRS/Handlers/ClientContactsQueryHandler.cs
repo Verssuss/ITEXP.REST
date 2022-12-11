@@ -1,5 +1,4 @@
-﻿using Application.CQRS.Commands;
-using Application.CQRS.Queries;
+﻿using Application.CQRS.Queries;
 using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;

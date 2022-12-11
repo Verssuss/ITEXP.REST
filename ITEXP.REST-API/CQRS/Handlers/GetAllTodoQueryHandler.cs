@@ -3,16 +3,15 @@ using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using Shared;
-using System.Linq;
 
 namespace ITEXP.REST_API.CQRS.Handlers
 {
     public class GetAllTodoQueryHandler : BaseServerHandler<GetAllTodoQuery, Result<List<TodoResponse>>>
     {
+        private ICrypt _crypt;
+
         public GetAllTodoQueryHandler(IUnitOfWork<Guid> unitOfWork, IMapper mapper, ILogger<GetAllTodoQuery> logger, ICrypt crypt) : base(mapper, logger)
         {
             this.UnitOfWork = unitOfWork;
@@ -20,11 +19,10 @@ namespace ITEXP.REST_API.CQRS.Handlers
         }
 
         public IUnitOfWork<Guid> UnitOfWork { get; }
-        private ICrypt _crypt;
 
         public override async Task<Result<List<TodoResponse>>> Handle(GetAllTodoQuery request, CancellationToken cancellationToken)
         {
-            IQueryable<Todo> result = UnitOfWork.Repository<Todo>().Entities;
+            IQueryable<Todo> result = UnitOfWork.Repository<Todo>().Entities.Include(x => x.Comments);
             if (string.IsNullOrEmpty(request.SearchHeader) == false)
             {
                 //x.Header.Contains(request.SearchHeader, StringComparison.InvariantCultureIgnoreCase) в SQLite не работает

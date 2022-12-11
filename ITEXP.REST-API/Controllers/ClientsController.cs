@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ITEXP.REST_API.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class ClientsController : ControllerBase

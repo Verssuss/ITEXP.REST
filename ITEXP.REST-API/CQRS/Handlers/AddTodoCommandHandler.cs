@@ -2,11 +2,7 @@
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Serilog;
-using Serilog.Core;
 using Shared;
-using System.Runtime.ConstrainedExecution;
 
 namespace ITEXP.REST_API.CQRS.Handlers
 {

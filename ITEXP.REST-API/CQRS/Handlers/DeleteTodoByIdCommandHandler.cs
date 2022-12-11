@@ -1,5 +1,4 @@
 ﻿using Application.CQRS.Commands;
-using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;

@@ -2,12 +2,7 @@
 using Domain.Entities;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Contexts
 {
@@ -15,7 +10,6 @@ namespace Infrastructure.Contexts
     {
         public ITEXPContext(DbContextOptions options) : base(options)
         {
-     
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -61,7 +55,7 @@ namespace Infrastructure.Contexts
 
             Client client = new Client() { Id = 1, ClientName = "Mikle" };
             Client client2 = new Client() { Id = 2, ClientName = "John" };
-     
+
             List<ClientContact> contacts = new List<ClientContact>()
             {
                 new() { ClientId = client.Id, Id = 1, ContactType = "SIM", ContactValue = "12345" },

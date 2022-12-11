@@ -1,10 +1,7 @@
 ﻿using Application.CQRS.Commands;
-using Application.CQRS.Responses;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using Infrastructure.Repositories;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 
@@ -23,7 +20,7 @@ namespace ITEXP.REST_API.CQRS.Handlers
         {
             var todo = await UnitOfWork
                .Repository<Todo>().Entities
-               .Include(x=> x.Comments)
+               .Include(x => x.Comments)
                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             if (todo == null)
