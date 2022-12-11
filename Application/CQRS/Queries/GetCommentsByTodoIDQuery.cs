@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Queries
 {
-    public class GetCommentsByTodoIDQuery : IRequest<Result<TodoCommentsResponse>>
+    public class GetCommentsByTodoIdQuery : IRequest<Result<TodoCommentsResponse>>
     {
         public Guid Id { get; set; }
 
-        public GetCommentsByTodoIDQuery(Guid id)
+        public GetCommentsByTodoIdQuery(Guid id)
         {
             Id = id;
         }

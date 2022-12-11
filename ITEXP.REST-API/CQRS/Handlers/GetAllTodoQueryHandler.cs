@@ -5,7 +5,9 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Shared;
+using System.Linq;
 
 namespace ITEXP.REST_API.CQRS.Handlers
 {
@@ -22,8 +24,19 @@ namespace ITEXP.REST_API.CQRS.Handlers
 
         public override async Task<Result<List<TodoResponse>>> Handle(GetAllTodoQuery request, CancellationToken cancellationToken)
         {
-            var result = await UnitOfWork.Repository<Todo>().Entities.Include(x=> x.Comments).ToListAsync(cancellationToken);
-            var result2 = AutoMapper.Map<List<Todo>, List<TodoResponse>>(result);
+            IQueryable<Todo> result = UnitOfWork.Repository<Todo>().Entities;
+            if (string.IsNullOrEmpty(request.SearchHeader) == false)
+            {
+                //x.Header.Contains(request.SearchHeader, StringComparison.InvariantCultureIgnoreCase) в SQLite не работает
+                result = result.Where(x => x.Header.ToLower().Contains(request.SearchHeader.ToLower()));
+            }
+            if (request.Ids.Any())
+            {
+                result = result.Where(x => request.Ids.Contains(x.Id));
+            }
+
+            var todos = await result.ToListAsync();
+            var result2 = AutoMapper.Map<List<Todo>, List<TodoResponse>>(todos);
             foreach (var item in result2)
             {
                 item.Hash = _crypt.Crypt(item.Header);

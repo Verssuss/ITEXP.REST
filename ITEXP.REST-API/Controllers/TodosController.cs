@@ -19,9 +19,9 @@ namespace ITEXP.REST_API.Controllers
         }
 
         [HttpGet("getAllTodos")]
-        public async Task<IActionResult> GetAllTodos()
+        public async Task<IActionResult> GetAllTodos([FromQuery] GetAllTodoQuery query)
         {
-            var result = await _mediator.Send(new GetAllTodoQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 
@@ -56,7 +56,7 @@ namespace ITEXP.REST_API.Controllers
         [HttpGet("getCommentsByTodoID/{id:guid}")]
         public async Task<IActionResult> GetCommentsByTodoID(Guid id)
         {
-            var result = await _mediator.Send(new GetCommentsByTodoIDQuery(id));
+            var result = await _mediator.Send(new GetCommentsByTodoIdQuery(id));
             return Ok(result);
         }
 
